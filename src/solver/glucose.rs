@@ -1,3 +1,5 @@
+#![deprecated(since = "0.1.6", note = "rssat is deprecated. Please use the `satgalaxy` crate instead: https://crates.io/crates/satgalaxy")]
+
 //! The `glucose` module provides access to the `GlucoseSolver`.
 //!
 //! This module is enabled when the `minisat` feature is activated.

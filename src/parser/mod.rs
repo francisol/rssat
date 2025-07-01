@@ -1,3 +1,5 @@
+#![deprecated(since = "0.1.6", note = "rssat is deprecated. Please use the `satgalaxy` crate instead: https://crates.io/crates/satgalaxy")]
+
 mod dimacs;
 pub  use dimacs::parse_dimacs_cnf;
 pub  use dimacs::read_dimacs_from_file;

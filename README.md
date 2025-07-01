@@ -5,6 +5,9 @@
 [<img alt="crates.io" src="https://img.shields.io/crates/v/rssat.svg?style=for-the-badge&color=fc8d62&logo=rust" height="20">](https://crates.io/crates/rssat)
 [<img alt="docs.rs" src="https://img.shields.io/badge/docs.rs-rssat?style=for-the-badge&labelColor=555555&logo=docs.rs" height="20">](https://docs.rs/rssat)
 
+**⚠️ IMPORTANT: This crate is no longer maintained. Please use [`satgalaxy`](https://crates.io/crates/satgalaxy) instead, which is the actively maintained successor to `rssat`.**
+
+
 **rssat** is a Rust library that provides Rust bindings for multiple popular SAT solvers. Currently supported solvers include:
 
 - [MiniSat](https://github.com/niklasso/minisat) (2.2.0)

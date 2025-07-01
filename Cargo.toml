@@ -1,7 +1,7 @@
 [package]
 authors = ["Xie Zhongtao"]
 categories = ["science", "mathematics"]
-description = "rssat is a Rust library that provides Rust bindings for multiple popular SAT solvers"
+description = "DEPRECATED: rssat is a Rust library that provides Rust bindings for multiple popular SAT solvers"
 edition = "2021"
 keywords = ["sat", "minisat", "cadical", "glucose", "slover"]
 license = "MIT"
