@@ -19,10 +19,9 @@
 #![allow(non_snake_case)]
 #![allow(dead_code)]
 
-include!(concat!(env!("OUT_DIR"), "/cadical_bindings.rs"));
 
 
-use super::base::{Solver, Status};
+use super::{RawStatus, SatSolver, Status};
 
 /// `CaDiCaLSolver` is a wrapper for the [CaDiCaL](https://github.com/arminbiere/cadical) Solver .
 /// It also allows creating a `CaDiCaL_Solver` instance for more low-level operations.
@@ -52,61 +51,27 @@ use super::base::{Solver, Status};
 ///  ```toml
 ///  [dependencies]
 ///  rssat = { version = "x.y.z", features = ["cadical"] }
-pub struct CaDiCaLSolver {
-    inner:  CaDiCaL_Solver,
-}
+pub struct CaDiCaLSolver;
 
 impl CaDiCaLSolver {
-    pub fn new() -> Self {
-        unsafe {
-            CaDiCaLSolver {
-                inner:  CaDiCaL_Solver::new(),
-            }
-        }
+       pub fn new() -> Self {
+        println!("rssat is deprecated. Please use the `satgalaxy` crate instead: https://crates.io/crates/satgalaxy");
+        Self {}
     }
-
-    pub fn val(&mut self, lit: i32) -> i32 {
-        unsafe {
-          self.inner.val(lit)
-        }
-    }
-    pub  fn model(&mut self)->Vec<i32> {
-        let mut m =Vec::<i32>::new();
-        unsafe {
-        for i in 1..self.inner.vars()+1 {
-            if self.val(i)>0 {
-                m.push(i);
-            }
-        }
-    }
-        m
+    pub fn model(&mut self) -> Vec<i32> {
+        println!("rssat is deprecated. Please use the `satgalaxy` crate instead: https://crates.io/crates/satgalaxy");
+        vec![]
     }
 }
 
-impl Solver for CaDiCaLSolver {
-     fn solve_model(&mut self) -> Status {
-        unsafe {
-           return  match self.inner.solve() {
-                10 => {
-                    Status::SATISFIABLE(self.model())
-                },
-                20 =>{
-                    Status::UNSATISFIABLE
-                },
-                _ => Status::UNKNOWN,
-            }
-        }
+impl SatSolver for CaDiCaLSolver {
+    fn solve_model(&mut self) -> Status {
+        println!("rssat is deprecated. Please use the `satgalaxy` crate instead: https://crates.io/crates/satgalaxy");
+        Status::Unknown
     }
-     fn add_clause(&mut self, clause: &Vec<i32>) {
-        unsafe {
-            self.inner.clause6(clause.as_ptr(),clause.len());
-        }
-    }
-}
-impl Drop for CaDiCaLSolver {
-    fn drop(&mut self) {
-        unsafe {
-            self.inner.destruct();
-        }
+
+    fn add_clause(&mut self, clause: &Vec<i32>) {
+        println!("rssat is deprecated. Please use the `satgalaxy` crate instead: https://crates.io/crates/satgalaxy");
+
     }
 }

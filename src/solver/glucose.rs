@@ -19,9 +19,8 @@
 #![allow(non_snake_case)]
 #![allow(dead_code)]
 
-include!(concat!(env!("OUT_DIR"), "/glucose_bindings.rs"));
 
-use super::base::{Solver, Status};
+use super::{RawStatus, SatSolver, Status};
 
 /// `GlucoseSolver` is a wrapper for the [Glucose](https://github.com/audemard/glucose) SimpSolver.
 /// It also allows creating a `Glucose_StdSimpSolver` instance for more low-level operations.
@@ -51,54 +50,26 @@ use super::base::{Solver, Status};
 ///  ```toml
 ///  [dependencies]
 ///  rssat = { version = "x.y.z", features = ["glucose"] }
-pub struct GlucoseSolver {
-    inner: Glucose_StdSimpSolver,
-}
+pub struct GlucoseSolver;
 
 impl GlucoseSolver {
-    pub fn new() -> Self {
-        unsafe {
-            GlucoseSolver {
-                inner: Glucose_StdSimpSolver::new(),
-            }
-        }
+   pub fn new() -> Self {
+        println!("rssat is deprecated. Please use the `satgalaxy` crate instead: https://crates.io/crates/satgalaxy");
+        Self {}
     }
     pub fn model(&mut self) -> Vec<i32> {
-        let mut m = Vec::<i32>::new();
-        unsafe {
-            for i in 0..self.inner.nVars(){
-                if self.inner.value(i) {
-                    m.push(i+1);
-                }
-            }
-        }
-        m
+        println!("rssat is deprecated. Please use the `satgalaxy` crate instead: https://crates.io/crates/satgalaxy");
+        vec![]
     }
 }
 
-impl Solver for GlucoseSolver {
-    fn solve_model(&mut self) -> Status {
-        unsafe {
-            self.inner.eliminate(true);
-            return if self.inner.solve1(true, false) {
-                Status::SATISFIABLE(self.model())
-            } else {
-                Status::UNSATISFIABLE
-            };
-        }
+impl SatSolver for GlucoseSolver {
+      fn solve_model(&mut self) -> Status {
+        println!("rssat is deprecated. Please use the `satgalaxy` crate instead: https://crates.io/crates/satgalaxy");
+        Status::Unknown
     }
 
     fn add_clause(&mut self, clause: &Vec<i32>) {
-        unsafe {
-            println!("{}",self.inner.nVars());
-            self.inner.addClause(clause.as_ptr(),clause.len());
-        }
-    }
-}
-impl Drop for GlucoseSolver {
-    fn drop(&mut self) {
-        unsafe {
-            self.inner.destruct();
-        }
+        println!("rssat is deprecated. Please use the `satgalaxy` crate instead: https://crates.io/crates/satgalaxy");
     }
 }
